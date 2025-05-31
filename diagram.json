@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "author": "link biru",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dip-switch-8", "id": "sw1", "top": -80.1, "left": 116.7, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -72.85,
+      "left": 230.4,
+      "attrs": { "value": "5000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -63.25,
+      "left": 240,
+      "attrs": { "value": "5000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -53.65,
+      "left": 249.6,
+      "attrs": { "value": "5000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": -44.05,
+      "left": 259.2,
+      "attrs": { "value": "5000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": -34.45,
+      "left": 268.8,
+      "attrs": { "value": "5000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r6",
+      "top": -24.85,
+      "left": 278.4,
+      "attrs": { "value": "5000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r7",
+      "top": -15.25,
+      "left": 288,
+      "attrs": { "value": "5000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r8",
+      "top": -5.65,
+      "left": 297.6,
+      "attrs": { "value": "5000" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -9.4, "left": 441.6, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay2", "top": -67, "left": 441.6, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay3", "top": 48.2, "left": 441.6, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay4", "top": 105.8, "left": 441.6, "attrs": {} },
+    
+    { "type": "wokwi-relay-module", "id": "relay5", "top": 163.4, "left": 441.6, "attrs": {} }
+  
+  
+  ],
+  "connections": [
+    [ "sw1:1a", "mega:13", "green", [ "v0" ] ],
+    [ "sw1:2a", "mega:12", "green", [ "v0" ] ],
+    [ "sw1:3a", "mega:11", "green", [ "v0" ] ],
+    [ "sw1:4a", "mega:10", "green", [ "v0" ] ],
+    [ "sw1:5a", "mega:9", "green", [ "v0" ] ],
+    [ "sw1:6a", "mega:8", "green", [ "v0" ] ],
+    [ "sw1:7a", "mega:7", "green", [ "v0" ] ],
+    [ "sw1:8a", "mega:6", "green", [ "v0" ] ],
+    [ "sw1:1b", "sw1:2b", "green", [ "v0" ] ],
+    [ "sw1:2b", "sw1:3b", "green", [ "v0" ] ],
+    [ "sw1:3b", "sw1:4b", "green", [ "v0" ] ],
+    [ "sw1:4b", "sw1:5b", "green", [ "v0" ] ],
+    [ "sw1:5b", "sw1:6b", "green", [ "v0" ] ],
+    [ "sw1:6b", "sw1:7b", "green", [ "v0" ] ],
+    [ "sw1:7b", "sw1:8b", "green", [ "v0" ] ],
+    [ "sw1:1b", "mega:5V", "red", [ "v0.3", "h-105.6", "v278.4", "h153.6" ] ],
+    [ "r5:2", "r4:2", "green", [ "v0" ] ],
+    [ "r4:2", "r3:2", "green", [ "v0" ] ],
+    [ "r3:2", "r2:2", "green", [ "v0" ] ],
+    [ "r2:2", "r1:2", "green", [ "v-9.6", "h-1.2" ] ],
+    [ "r1:1", "sw1:1a", "green", [ "v28.8", "h-105.6" ] ],
+    [ "r2:1", "sw1:2a", "green", [ "v19.2", "h-105.6" ] ],
+    [ "r3:1", "sw1:3a", "green", [ "v9.6", "h-9.6" ] ],
+    [ "sw1:4a", "r4:1", "green", [ "v0" ] ],
+    [ "r5:1", "sw1:5a", "green", [ "v-9.6", "h-105.6" ] ],
+    [ "r6:1", "sw1:6a", "green", [ "v-9.6", "h-48", "v-9.6", "h-57.6" ] ],
+    [ "r7:1", "sw1:7a", "green", [ "v0", "h-57.6", "v-28.8", "h-38.4" ] ],
+    [ "r8:1", "sw1:8a", "green", [ "v0", "h-67.2", "v-38.4", "h-38.4" ] ],
+    [ "r8:2", "r7:2", "green", [ "v0" ] ],
+    [ "r7:2", "r6:2", "green", [ "v0" ] ],
+    [ "r6:2", "r5:2", "green", [ "v0" ] ],
+    [ "r1:2", "mega:GND.1", "green", [ "v-28.8", "h-174" ] ],
+    [ "relay1:VCC", "relay2:VCC", "red", [ "h19.2", "v-57.6" ] ],
+    [ "relay1:VCC", "relay3:VCC", "red", [ "h19.2", "v57.6" ] ],
+    [ "relay3:GND", "relay1:GND", "black", [ "h19.2", "v-38.8" ] ],
+    [ "relay1:GND", "relay2:GND", "black", [ "h19.2", "v-48.4" ] ],
+    [ "mega:5V", "relay3:VCC", "red", [ "v7.5", "h296.3", "v-124.8" ] ],
+    [ "relay3:GND", "mega:GND.2", "black", [ "h9.6", "v124.4", "h-278.4" ] ],
+    [ "relay2:IN", "mega:22", "green", [ "h0" ] ],
+    [ "relay1:IN", "mega:23", "green", [ "h-19.2", "v-48.2", "h-38.4" ] ],
+    [ "relay3:IN", "mega:24", "green", [ "h-28.8", "v-86.6" ] ],
+    [ "relay4:VCC", "relay3:VCC", "red", [ "h19.2", "v-57.6" ] ],
+    [ "relay4:GND", "relay3:GND", "black", [ "h9.6", "v-10" ] ],
+    [ "relay5:GND", "relay4:GND", "black", [ "h9.6", "v-58" ] ],
+    [ "relay5:VCC", "relay4:VCC", "red", [ "h19.2", "v-48" ] ],
+    [ "relay4:IN", "mega:25", "green", [ "h-38.4", "v-67.4" ] ],
+    [ "relay5:IN", "mega:26", "green", [ "h-19.2", "v-134.6" ] ]
+  ],
+  "dependencies": {}
+}
