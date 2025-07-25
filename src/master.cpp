@@ -105,7 +105,7 @@ void main_Relay()
 
   for (size_t i = 0; i < maxrelay; i++)
   {
-    const int INTERVAL_RL = 1500;
+    const int INTERVAL_RL = 800;
     if (task[i].status == ON)
     {
       digitalWrite(task[i].pinRelay, relayon);
@@ -360,7 +360,8 @@ void getPassword(manual_state *obj)
     isPassword = "";
   else
     obj->statusPassword = DENIDE;
-  Serial.println(isPassword);
+  if (isPassword.length() > 0)
+    Serial.println(isPassword);
   setRole_Keypad(obj);
 }
 
