@@ -3,7 +3,7 @@
 #define maxrelay 32
 #define maxbyte 5
 #define baudrate_CL 9600
-#define baudrate_PC 115200
+#define baudrate_PC 9600
 #define led 13
 #define relayoff HIGH
 #define relayon LOW
@@ -144,22 +144,32 @@ void check_data(byte bytPin)
 
 void total_RelayON()
 {
+  static byte last_totalRl = 0;
   byte totalRl = 0;
+  static bool print = true;
   for (size_t i = 0; i < maxrelay; i++)
   {
     if (task[i].status == ON)
     {
       totalRl++;
-      Serial.print(task[i].pinRelay);
-      Serial.print(" time: ");
-      Serial.print(millis() - task[i].TimeOn);
-      Serial.print(" locker : ");
-      Serial.print(task[i].pinRelay - 21);
-      Serial.print(' ');
+      if (print)
+      {
+
+        Serial.print(task[i].pinRelay);
+        // Serial.print(" time: ");
+        // Serial.print(millis() - task[i].TimeOn);
+        Serial.print(" locker : ");
+        Serial.print(task[i].pinRelay - 21);
+        Serial.print(' ');
+        last_totalRl = totalRl;
+        print = false;
+      }
     }
   }
-
-  if (totalRl > 0)
+  
+  if (totalRl != last_totalRl)
+  print = true;
+  if (totalRl > 0 && print)
     Serial.println(totalRl);
 }
 
@@ -420,6 +430,19 @@ void manual_Locker()
   }
 }
 
+void test()
+{
+  static unsigned long lt = 0;
+  static byte i = 0;
+  if (i >= maxrelay)
+    return;
+  if (millis() - lt > 2000)
+  {
+    task[i].status = ON;
+    i++;
+    lt = millis();
+  }
+}
 void setup()
 {
   Serial3.begin(baudrate_CL);
@@ -438,4 +461,5 @@ void loop()
   total_RelayON();
   // Manual_Mode();
   manual_Locker();
+  // test();
 }
